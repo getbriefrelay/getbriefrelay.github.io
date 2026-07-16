@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BriefRelay | Missed-Lead Desk for Local Service Businesses</title>
+  <meta name="description" content="BriefRelay is an approval-gated missed-lead desk for roofing, plumbing, HVAC, and local service businesses.">
+  <style>
+    :root {
+      --desk: #102A2D;
+      --teal: #24B3A7;
+      --coral: #F46D4F;
+      --paper: #F7F1E6;
+      --yellow: #F2B84B;
+      --ink: #17201D;
+      --line: rgba(16, 42, 45, 0.18);
+      --shadow: 0 18px 50px rgba(16, 42, 45, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; }
+
+    .nav {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px clamp(18px, 4vw, 54px);
+      color: var(--paper);
+      background: rgba(16, 42, 45, 0.82);
+      border-bottom: 1px solid rgba(247, 241, 230, 0.22);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      font-weight: 950;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: var(--paper);
+      flex: 0 0 auto;
+    }
+
+    .brand span {
+      font-size: 1.05rem;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(247, 241, 230, 0.88);
+    }
+
+    .nav-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 11px 16px;
+      border: 2px solid var(--desk);
+      border-radius: 8px;
+      background: var(--yellow);
+      color: var(--desk);
+      font-weight: 950;
+      text-decoration: none;
+      box-shadow: 4px 4px 0 var(--desk);
+    }
+
+    .nav-cta {
+      min-height: 38px;
+      padding: 8px 12px;
+      border-color: var(--paper);
+      box-shadow: 3px 3px 0 var(--paper);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      align-items: end;
+      padding: 108px clamp(18px, 5vw, 68px) 52px;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 78% 82%, rgba(36, 179, 167, 0.4) 0 13%, transparent 13.2%),
+        radial-gradient(circle at 12% 0%, rgba(242, 184, 75, 0.44) 0 16%, transparent 16.2%),
+        linear-gradient(135deg, rgba(244, 109, 79, 0.58), transparent 36%),
+        var(--desk);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(16, 42, 45, 0.96) 0 47%, rgba(16, 42, 45, 0.62) 70%, rgba(16, 42, 45, 0.9) 100%);
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: clamp(24px, 6vw, 96px);
+      bottom: 58px;
+      width: min(46vw, 640px);
+      aspect-ratio: 1;
+      border: 3px solid rgba(247, 241, 230, 0.72);
+      border-radius: 24px;
+      background: url("assets/instagram/briefrelay-inbox-bermuda-triangle-v3/slide-3.png") center / cover no-repeat;
+      box-shadow: 18px 18px 0 rgba(36, 179, 167, 0.72);
+      opacity: 0.56;
+      transform: rotate(2deg);
+      z-index: 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(680px, 100%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 0 18px;
+      padding: 9px 12px;
+      border: 1px solid rgba(247, 241, 230, 0.5);
+      border-radius: 8px;
+      background: rgba(16, 42, 45, 0.46);
+      font-size: 0.85rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 680px;
+      font-size: clamp(3rem, 8vw, 6.6rem);
+      line-height: 0.92;
+      font-weight: 950;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 20px 0 0;
+      font-size: clamp(1.05rem, 2.2vw, 1.34rem);
+      line-height: 1.45;
+      font-weight: 760;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button.secondary {
+      background: var(--paper);
+      box-shadow: 4px 4px 0 var(--teal);
+    }
+
+    .section {
+      padding: clamp(52px, 7vw, 96px) clamp(18px, 5vw, 68px);
+    }
+
+    .section.dark {
+      background: var(--desk);
+      color: var(--paper);
+    }
+
+    .section.yellow {
+      background: var(--yellow);
+      color: var(--desk);
+    }
+
+    .wrap {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.7fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.12;
+      font-weight: 950;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.58;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.55;
+      font-weight: 720;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 2px solid var(--desk);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: 6px 6px 0 rgba(16, 42, 45, 0.92);
+      padding: 20px;
+      min-height: 100%;
+    }
+
+    .dark .card {
+      border-color: rgba(247, 241, 230, 0.58);
+      box-shadow: 6px 6px 0 var(--coral);
+      color: var(--ink);
+    }
+
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-12 { grid-column: span 12; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 12px;
+      padding: 7px 10px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .problem-card strong,
+    .brief-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.02rem;
+    }
+
+    .visual-row {
+      align-items: stretch;
+    }
+
+    .visual {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+    }
+
+    .offer {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .price {
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(247, 241, 230, 0.58);
+      font-weight: 800;
+    }
+
+    .dark .checklist li {
+      border-color: rgba(247, 241, 230, 0.25);
+      background: rgba(247, 241, 230, 0.08);
+      color: var(--paper);
+    }
+
+    .brief {
+      display: grid;
+      gap: 12px;
+    }
+
+    .brief-item {
+      padding: 16px;
+      border: 1px solid rgba(16, 42, 45, 0.16);
+      border-radius: 8px;
+      background: #fffaf0;
+    }
+
+    .urgency {
+      display: inline-flex;
+      margin-bottom: 8px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      background: var(--coral);
+      color: var(--paper);
+      font-size: 0.72rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .steps {
+      counter-reset: steps;
+    }
+
+    .step {
+      position: relative;
+      padding-left: 62px;
+    }
+
+    .step::before {
+      counter-increment: steps;
+      content: counter(steps);
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--desk);
+      font-weight: 950;
+    }
+
+    .cta-band {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px;
+      align-items: center;
+      padding: 28px;
+      border: 2px solid var(--desk);
+      border-radius: 8px;
+      background: var(--teal);
+      box-shadow: 8px 8px 0 var(--desk);
+    }
+
+    .footer {
+      padding: 28px clamp(18px, 5vw, 68px);
+      background: var(--desk);
+      color: rgba(247, 241, 230, 0.82);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 880px) {
+      .nav {
+        position: absolute;
+      }
+
+      .nav-links a {
+        display: none;
+      }
+
+      .hero {
+        min-height: 84vh;
+      }
+
+      .hero::after {
+        width: min(58vw, 420px);
+        right: -44px;
+        bottom: 44px;
+        opacity: 0.2;
+      }
+
+      .section-head,
+      .cta-band {
+        grid-template-columns: 1fr;
+      }
+
+      .span-3,
+      .span-4,
+      .span-5,
+      .span-6,
+      .span-7,
+      .span-12 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body { overflow-x: hidden; }
+      .brand span { font-size: 0.96rem; }
+      .nav-cta { padding: 8px 10px; }
+      .hero {
+        min-height: 82vh;
+        padding: 96px 24px 38px;
+      }
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(16, 42, 45, 0.96) 0 58%, rgba(16, 42, 45, 0.84) 100%);
+      }
+      .hero::after {
+        display: none;
+      }
+      .eyebrow {
+        max-width: 100%;
+        font-size: 0.68rem;
+        white-space: normal;
+      }
+      h1 {
+        max-width: 340px;
+        font-size: 2.55rem;
+        line-height: 0.98;
+      }
+      .hero p {
+        max-width: 342px;
+        font-size: 0.98rem;
+        line-height: 1.42;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        max-width: 342px;
+      }
+      .button {
+        width: 100%;
+        min-height: 46px;
+        padding: 11px 12px;
+        font-size: 0.92rem;
+        text-align: center;
+      }
+      .section {
+        padding: 48px 24px;
+      }
+      h2 {
+        font-size: 1.75rem;
+        line-height: 1.04;
+      }
+      .lead { font-size: 1rem; }
+      .card { padding: 16px; }
+      .step { padding-left: 16px; padding-top: 56px; }
+      .step::before { left: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#top" aria-label="BriefRelay home">
+      <img src="assets/briefrelay/briefrelay-avatar.png" alt="BriefRelay logo">
+      <span>BriefRelay</span>
+    </a>
+    <div class="nav-links">
+      <a href="#pilot">Pilot</a>
+      <a href="#brief">Owner brief</a>
+      <a href="#trust">Trust</a>
+      <a class="nav-cta" href="mailto:briefrelayops@gmail.com?subject=BriefRelay%20sample%20owner%20brief">Get sample</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="eyebrow">Missed-lead desk for local service businesses</div>
+      <h1>Hot leads should not need a search party.</h1>
+      <p>BriefRelay watches one approved lead source, spots urgent requests, drafts safe replies for approval, tracks follow-ups, and sends a short daily owner brief.</p>
+      <div class="hero-actions">
+        <a class="button" href="mailto:briefrelayops@gmail.com?subject=BriefRelay%20sample%20owner%20brief">Get a fake-data owner brief</a>
+        <a class="button secondary" href="#pilot">See the 7-day pilot</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section yellow">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The inbox is where revenue goes to hide.</h2>
+          <p class="lead">The buyer is not careless. The inbox is just a bad place to triage urgent service requests, quote follow-ups, voicemail transcripts, and vendor noise at the same time.</p>
+        </div>
+        <div class="grid">
+          <div class="card problem-card span-4">
+            <span class="tag">Roofing</span>
+            <strong>Inspection and storm leads get buried.</strong>
+            <p>Leak, repair, and insurance-related messages need visibility before the day fills up.</p>
+          </div>
+          <div class="card problem-card span-4">
+            <span class="tag">Plumbing</span>
+            <strong>Same-day problems rarely arrive politely.</strong>
+            <p>Burst pipes, drains, and water heaters can sit beside routine admin until someone digs.</p>
+          </div>
+          <div class="card problem-card span-4">
+            <span class="tag">HVAC</span>
+            <strong>No-cooling leads hate waiting rooms.</strong>
+            <p>Emergency AC requests need a clean path to the top without reckless autopilot replies.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pilot">
+      <div class="wrap">
+        <div class="grid visual-row">
+          <div class="card visual span-5">
+            <img src="assets/instagram/daily-queue-2026-07-14/2026-07-14-1147-estimate-request.png" alt="The 11:47 PM estimate request BriefRelay campaign visual">
+          </div>
+          <div class="offer span-7">
+            <div class="section-head" style="display:block;margin-bottom:10px;">
+              <h2>Start with a 7-day missed-lead pilot.</h2>
+              <p class="lead">Small enough to trust. Useful enough to prove whether the problem is real.</p>
+            </div>
+            <div class="card">
+              <span class="tag">Pilot price</span>
+              <div class="price">$750</div>
+              <p>One approved lead source, one short daily brief, and draft replies that wait for approval before anything reaches a customer.</p>
+              <ul class="checklist">
+                <li>Urgent lead flags</li>
+                <li>Safe reply drafts for approval</li>
+                <li>Follow-ups due</li>
+                <li>Owner decisions needed</li>
+                <li>Low-priority noise separated</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="brief">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The daily owner brief is the product.</h2>
+          <p class="lead">Instead of another dashboard, owners get a tight list of what needs attention, why it matters, and what response is ready for review.</p>
+        </div>
+        <div class="grid">
+          <div class="card brief span-7">
+            <div class="brief-item">
+              <span class="urgency">Critical</span>
+              <strong>Maria Lopez - Roof leak after hail</strong>
+              <p>Active water intrusion after hail can become an emergency job and may involve insurance.</p>
+              <p><strong>Recommended action:</strong> Call immediately and offer the earliest inspection window.</p>
+            </div>
+            <div class="brief-item">
+              <span class="urgency">Critical</span>
+              <strong>Chris Martin - Burst pipe under sink</strong>
+              <p>Water is shut off, but this is still an urgent plumbing need and a same-day opportunity.</p>
+              <p><strong>Draft for approval:</strong> Ask for address, photo, and availability before promising any service window.</p>
+            </div>
+            <div class="brief-item">
+              <span class="urgency" style="background:var(--yellow);color:var(--desk);">High</span>
+              <strong>Daniel Reed - AC replacement quote</strong>
+              <p>Specific replacement request with clear timeline; good fit for a booked estimate.</p>
+            </div>
+          </div>
+          <div class="card span-5">
+            <span class="tag">What owners see</span>
+            <h3>Hot stuff on top. Noise out of the way.</h3>
+            <ul class="checklist">
+              <li>Top leads ranked by urgency</li>
+              <li>Follow-ups due today</li>
+              <li>Owner decisions needed</li>
+              <li>Draft replies clearly marked for approval</li>
+              <li>Spam, vendor promos, and routine admin separated</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trust">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Helpful drafts. Human approval.</h2>
+          <p class="lead">BriefRelay is built for owners who want faster triage without customer-facing surprises.</p>
+        </div>
+        <div class="grid steps">
+          <div class="card step span-3">
+            <h3>Approve the source</h3>
+            <p>Choose one inbox, form notification, or lead source for the pilot.</p>
+          </div>
+          <div class="card step span-3">
+            <h3>BriefRelay sorts</h3>
+            <p>Urgent requests, follow-ups, and decision items move to the top.</p>
+          </div>
+          <div class="card step span-3">
+            <h3>Drafts wait</h3>
+            <p>Replies are prepared for review, not sent behind anyone's back.</p>
+          </div>
+          <div class="card step span-3">
+            <h3>Owner acts</h3>
+            <p>The day starts with a clean action brief instead of inbox archaeology.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="wrap">
+        <div class="grid visual-row">
+          <div class="span-6">
+            <h2>Nothing sends without approval.</h2>
+            <p class="lead">No autopilot bookings. No dispatch promises. No deleted leads. No surprise customer messages.</p>
+            <p>BriefRelay makes inbox chaos visible, drafts the useful next step, and leaves the decision with the business.</p>
+          </div>
+          <div class="card visual span-6">
+            <img src="assets/instagram/briefrelay-inbox-bermuda-triangle-v3/slide-4.png" alt="BriefRelay approval required campaign visual">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section yellow">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2 style="font-size:clamp(2rem,4vw,3.5rem);">Want to see your leads in a cleaner brief?</h2>
+            <p class="lead">Ask for the fake-data sample. If it looks useful, the 7-day pilot is the next step.</p>
+          </div>
+          <a class="button secondary" href="mailto:briefrelayops@gmail.com?subject=BriefRelay%20sample%20owner%20brief">Get sample owner brief</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">BriefRelay | Approval-gated missed-lead intake for local service businesses | briefrelayops@gmail.com</div>
+  </footer>
+</body>
+</html>
