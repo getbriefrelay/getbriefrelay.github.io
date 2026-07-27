@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">BriefRelay logo concept V4D</title>
+  <desc id="desc">A refined lead-card mark with a colorful relay path, designed to feel professional, friendly, and modern.</desc>
+  <defs>
+    <linearGradient id="base" x1="142" y1="92" x2="890" y2="928" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7F1E6"/>
+      <stop offset="1" stop-color="#FFEBC2"/>
+    </linearGradient>
+    <linearGradient id="card" x1="272" y1="242" x2="728" y2="742" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F7F1E6"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="24" flood-color="#102A2D" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#base)"/>
+  <path d="M0 756 C168 688 312 744 496 648 C676 554 800 430 1024 486 L1024 1024 L0 1024 Z" fill="#24B3A7"/>
+  <path d="M716 0 C806 88 906 166 1024 206 L1024 0 Z" fill="#F46D4F"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="182" y="176" width="660" height="660" rx="154" fill="#102A2D"/>
+    <rect x="280" y="268" width="464" height="420" rx="58" fill="url(#card)"/>
+    <path d="M648 268 L744 364 H676 C660 364 648 352 648 336 Z" fill="#F2B84B"/>
+    <rect x="340" y="358" width="236" height="30" rx="15" fill="#102A2D"/>
+    <rect x="340" y="438" width="300" height="30" rx="15" fill="#102A2D" opacity=".72"/>
+    <rect x="340" y="518" width="180" height="30" rx="15" fill="#102A2D" opacity=".48"/>
+
+    <path d="M360 654 C458 578 580 574 692 638" fill="none" stroke="#24B3A7" stroke-width="38" stroke-linecap="round"/>
+    <path d="M646 570 L746 638 L648 710" fill="none" stroke="#24B3A7" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="348" cy="656" r="46" fill="#F46D4F"/>
+    <circle cx="748" cy="638" r="46" fill="#F2B84B"/>
+
+    <rect x="314" y="214" width="144" height="72" rx="24" fill="#F46D4F"/>
+    <text x="342" y="263" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="950" letter-spacing="0">BR</text>
+  </g>
+</svg>

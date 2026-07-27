@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="96" y1="80" x2="928" y2="944" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#102A2D"/>
+      <stop offset="1" stop-color="#17201D"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#061311" flood-opacity=".28"/>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="1024" rx="210" fill="url(#bg)"/>
+  <circle cx="790" cy="194" r="84" fill="#24B3A7" opacity=".16"/>
+  <circle cx="176" cy="830" r="112" fill="#F46D4F" opacity=".14"/>
+
+  <g filter="url(#softShadow)">
+    <circle cx="512" cy="512" r="344" fill="#F7F1E6"/>
+  </g>
+
+  <path d="M286 640 C392 548 528 548 642 638" fill="none" stroke="#24B3A7" stroke-width="38" stroke-linecap="round"/>
+  <path d="M626 568 L736 640 L626 712" fill="none" stroke="#24B3A7" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="280" cy="640" r="54" fill="#F46D4F"/>
+  <circle cx="512" cy="594" r="42" fill="#102A2D"/>
+  <circle cx="744" cy="640" r="54" fill="#F2B84B"/>
+
+  <g transform="translate(286 372)">
+    <text x="0" y="0" fill="#102A2D" font-family="Inter, Arial, sans-serif" font-size="225" font-weight="900" letter-spacing="-4">BR</text>
+    <path d="M38 66 C126 116 268 116 360 66" fill="none" stroke="#F2B84B" stroke-width="28" stroke-linecap="round"/>
+  </g>
+</svg>

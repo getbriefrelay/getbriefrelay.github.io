@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Mercury BriefRelay team avatar</title>
+  <desc id="desc">Mercury, Marketing Manager, represented as a bold BriefRelay-style avatar mark.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#102A2D" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="#F46D4F"/>
+  <path d="M0 758 C176 688 326 738 502 650 C682 560 796 438 1024 492 L1024 1024 L0 1024 Z" fill="#F2B84B" opacity=".92"/>
+  <path d="M718 0 C808 88 908 166 1024 206 L1024 0 Z" fill="#24B3A7"/>
+  <g filter="url(#shadow)">
+    <circle cx="512" cy="514" r="336" fill="#F7F1E6" stroke="#102A2D" stroke-width="34"/>
+    <circle cx="512" cy="514" r="280" fill="#F46D4F" opacity=".2"/>
+    
+      <path d="M300 548 L604 406 L604 666 L300 548 Z" fill="#F7F1E6" stroke="#102A2D" stroke-width="28" stroke-linejoin="round"/>
+      <path d="M604 448 C708 458 782 498 826 568" fill="none" stroke="#F2B84B" stroke-width="34" stroke-linecap="round"/>
+      <path d="M604 602 C706 594 778 556 822 494" fill="none" stroke="#24B3A7" stroke-width="28" stroke-linecap="round"/>
+      <rect x="246" y="502" width="118" height="98" rx="32" fill="#102A2D"/>
+      <path d="M340 604 L422 766" fill="none" stroke="#102A2D" stroke-width="42" stroke-linecap="round"/>
+      <circle cx="736" cy="330" r="42" fill="#F2B84B" stroke="#102A2D" stroke-width="24"/>
+    
+    <rect x="200" y="192" width="176" height="102" rx="34" fill="#102A2D"/>
+    <text x="288" y="262" text-anchor="middle" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="950" letter-spacing="0">M</text>
+    <rect x="334" y="812" width="356" height="72" rx="36" fill="#102A2D"/>
+    <text x="512" y="861" text-anchor="middle" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="950" letter-spacing="0">Mercury</text>
+  </g>
+</svg>

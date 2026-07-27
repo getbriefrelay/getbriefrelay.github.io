@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BriefRelay Board Status</title>
+  <style>
+    :root {
+      --ink: #17201d;
+      --muted: #66736d;
+      --line: #d8dfdb;
+      --panel: #ffffff;
+      --page: #f7f1e6;
+      --green: #102a2d;
+      --green-2: #24b3a7;
+      --orange: #f46d4f;
+      --blue: #2f5f98;
+      --yellow: #f2b84b;
+      --shadow: 9px 9px 0 rgba(16, 42, 45, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 92% 8%, rgba(36, 179, 167, .30) 0 120px, transparent 122px),
+        linear-gradient(162deg, #f46d4f 0 315px, var(--page) 316px);
+      font: 14px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    .shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 26px;
+      line-height: 1.1;
+      font-weight: 760;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 5px;
+      max-width: 760px;
+    }
+
+    .asof {
+      text-align: right;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border: 3px solid var(--green);
+      background: var(--yellow);
+      color: var(--green);
+      border-radius: 999px;
+      font-weight: 650;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    section, .card {
+      background: var(--panel);
+      border: 3px solid var(--green);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    section {
+      padding: 18px;
+    }
+
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 720;
+    }
+
+    .metric-value {
+      margin-top: 10px;
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 780;
+    }
+
+    .metric-note {
+      margin-top: 9px;
+      color: var(--muted);
+      min-height: 40px;
+    }
+
+    .progress {
+      height: 10px;
+      margin-top: 16px;
+      background: #e8ecea;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      background: var(--green-2);
+      border-radius: inherit;
+    }
+
+    .bar.orange { background: var(--orange); }
+    .bar.blue { background: var(--blue); }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-size: 17px;
+      font-weight: 760;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stage {
+      min-height: 126px;
+      border: 2px solid var(--green);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fffaf0;
+    }
+
+    .stage strong {
+      display: block;
+      font-size: 22px;
+      margin-top: 12px;
+    }
+
+    .stage span {
+      display: block;
+      color: var(--muted);
+      margin-top: 7px;
+      min-height: 38px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      padding: 0 10px 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    td {
+      padding: 12px 10px 12px 0;
+      border-bottom: 1px solid #eef1ef;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(36, 179, 167, .13);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .tag.sent { background: rgba(47, 95, 152, .11); color: var(--blue); }
+    .tag.risk { background: rgba(183, 121, 31, .13); color: var(--yellow); }
+    .tag.blocked { background: rgba(217, 93, 57, .12); color: #974122; }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eef1ef;
+    }
+
+    .event:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 680;
+    }
+
+    .event strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .list-item {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfb;
+    }
+
+    .list-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .style-link {
+      display: inline-flex;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--orange);
+      color: var(--page);
+      font-weight: 780;
+      text-decoration: none;
+    }
+
+    .team-avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .team-avatar {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border: 2px solid var(--green);
+      border-radius: 8px;
+      background: #fffaf0;
+      min-width: 0;
+    }
+
+    .team-avatar img {
+      width: 100%;
+      aspect-ratio: 1;
+      display: block;
+      object-fit: cover;
+      border: 3px solid var(--green);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+
+    .team-avatar strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .team-avatar span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .asset-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .shell { padding: 18px; }
+      header { grid-template-columns: auto 1fr; }
+      .asof { grid-column: 1 / -1; text-align: left; }
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+      .pipeline { grid-template-columns: 1fr; }
+      .team-avatar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .metric-note { min-height: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .team-avatar-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <img class="logo" src="assets/briefrelay/briefrelay-avatar.png" alt="BriefRelay logo">
+      <div>
+        <h1>BriefRelay Board Status</h1>
+        <p class="subtitle">Fun, bold, approval-gated lead intake for local service businesses. Current objective: earn the first $1,000 without looking like boring business collateral.</p>
+        <div class="status-pill"><span class="dot"></span> Business plan active: Jarvis leading, Mercury + Vera/Vega coordinated</div>
+        <a class="style-link" href="https://getbriefrelay.github.io/">View live customer website</a>
+        <a class="style-link" href="briefrelay-style-guide.html">View BriefRelay style guide</a>
+        <a class="style-link" href="data/ai-money-venture/briefrelay-business-plan-2026-07-13.md">View business plan</a>
+      </div>
+      <div class="asof">
+        <div>As of July 27, 2026 12:18 MDT</div>
+        <div>BriefRelay Ops</div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="span-3">
+        <div class="metric-label">Revenue Booked</div>
+        <div class="metric-value">$0</div>
+        <div class="metric-note">No paid pilot booked yet. Daily marketing and next outreach upgrade are now operating tasks.</div>
+        <div class="progress"><div class="bar" style="width:0%"></div></div>
+      </section>
+
+      <section class="span-3">
+        <div class="metric-label">Target</div>
+        <div class="metric-value">$1,000</div>
+        <div class="metric-note">Target can be reached with one $750 pilot plus a setup/monthly conversion.</div>
+        <div class="progress"><div class="bar blue" style="width:75%"></div></div>
+      </section>
+
+      <section class="span-3">
+        <div class="metric-label">Outreach Emails Sent</div>
+        <div class="metric-value">75</div>
+        <div class="metric-note">35 unique prospects contacted plus 40 follow-ups. July 27 Gmail recovery checks found no replies, no new bounce/delivery hits, and spam empty; no email sent because Batch 7 is under duplicate-send guard and Batch 5/6 next normal follow-up window is July 28.</div>
+        <div class="progress"><div class="bar" style="width:90%"></div></div>
+      </section>
+
+      <section class="span-3">
+        <div class="metric-label">Replies</div>
+        <div class="metric-value">1</div>
+        <div class="metric-note">One human reply: Almeida said not interested. No positive prospect replies yet.</div>
+        <div class="progress"><div class="bar orange" style="width:0%"></div></div>
+      </section>
+
+      <section class="span-3">
+        <div class="metric-label">Marketing Manager</div>
+        <div class="metric-value">Mercury</div>
+        <div class="metric-note">Owns daily BriefRelay marketing cadence: post plan, email angles, backlog, and next actions.</div>
+      </section>
+
+      <section class="span-3">
+        <div class="metric-label">Brand Designer</div>
+        <div class="metric-value">Vega</div>
+        <div class="metric-note">Design guide now sets BriefRelay as fun, bold, funny, and never boring business.</div>
+      </section>
+
+      <section class="span-3">
+        <div class="metric-label">Campaign Live</div>
+        <div class="metric-value">30d</div>
+        <div class="metric-note">Mercury operating plan now includes one planned Instagram post per day for 30 days.</div>
+      </section>
+
+      <section class="span-3">
+        <div class="metric-label">Instagram</div>
+        <div class="metric-value">@briefrelay</div>
+        <div class="metric-note">Profile has 12 live posts. July 25 HVAC Lead Aging Like Milk was recovered and published July 27 at https://www.instagram.com/briefrelay/p/DbTXhJgkRP6/ after native Instagram CDP recovery.</div>
+      </section>
+
+      <section class="span-7">
+        <div class="section-head">
+          <h2>Pipeline</h2>
+          <span class="small">Board view of current commercial motion</span>
+        </div>
+        <div class="pipeline">
+          <div class="stage">
+            <div class="metric-label">Public Prospects</div>
+            <strong>35</strong>
+            <span>Mesa/East Valley and Phoenix-area public prospects researched and scored through Batch 7.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Qualified</div>
+            <strong>35</strong>
+            <span>Public email targets selected across Batches 1-7.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Contacted</div>
+            <strong>35</strong>
+            <span>Initial outreach sent from BriefRelay Gmail.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Engaged</div>
+            <strong>1</strong>
+            <span>One negative reply; no interested prospects yet.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Paid Pilots</div>
+            <strong>0</strong>
+            <span>Primary offer ready: $750 flat pilot.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="span-5">
+        <div class="section-head">
+          <h2>Executive Summary</h2>
+          <span class="small">Current board narrative</span>
+        </div>
+        <div class="list">
+          <div class="list-item">
+            <strong>Batch 7 sent</strong>
+            <span>Five scored 16+ public-email prospects were sent July 20 and verified in Gmail Sent: Icon Roofing, Ryan Mechanical Company, Arid Valley Plumbing, Ground Zero Plumbing AC and Electrical, and Gold Star Plumbing &amp; Drain.</span>
+          </div>
+          <div class="list-item">
+            <strong>July 22 social live</strong>
+            <span>Before/After Brief is live after native Instagram CDP fallback; live URL: https://www.instagram.com/briefrelay/p/DbI3bzLEXBI/.</span>
+          </div>
+          <div class="list-item">
+            <strong>Next 7 assets repaired</strong>
+            <span>July 20-26 social assets are rendered as SVG/PNG in the new daily queue folder. July 19 was missed by the stale operator run and remains staged, not back-posted.</span>
+          </div>
+          <div class="list-item">
+            <strong>Batch 4 sent</strong>
+            <span>Five Mercury-template prospect emails went out July 13 with rotated subjects, verified public emails, and copy angles logged.</span>
+          </div>
+          <div class="list-item">
+            <strong>Brand system upgraded</strong>
+            <span>Vega's V4D style direction is now the board standard: fun, bold, funny, colorful, and still trustworthy.</span>
+          </div>
+          <div class="list-item">
+            <strong>Logo refreshed</strong>
+            <span>New V4D BriefRelay avatar uses a polished lead-card mark, clean relay path, and professional friendly color.</span>
+          </div>
+          <div class="list-item">
+            <strong>Offer is narrow and testable</strong>
+            <span>7-day Missed Lead Intake Pilot: one lead source, daily owner brief, approval-only replies.</span>
+          </div>
+          <div class="list-item">
+            <strong>Commercial proof is next</strong>
+            <span>Goal is first serious reply, then demo, then $750 pilot close. Almeida is stopped; other non-responders remain monitored.</span>
+          </div>
+          <div class="list-item">
+            <strong>Batch 5 sent</strong>
+            <span>Five scored 16+ public-email prospects were sent July 15 and verified in Gmail Sent: AZ Roofing Works, Guardian Contracting Group, Birdie Plumbing AZ, Streamline Plumbing AZ, and Sunline Plumbing. Guardian later bounced and needs an alternate contact.</span>
+          </div>
+          <div class="list-item">
+            <strong>Batch 2 follow-up sent</strong>
+            <span>Five Follow-Up 1 emails went out July 16 to Axis Roofing, East Valley Roofing and Repair, Dwell Roof, Romco Roofing, and Norris Air using Mercury's owner-brief CTA.</span>
+          </div>
+          <div class="list-item">
+            <strong>Batch 6 sent</strong>
+            <span>Five scored 16+ HVAC prospects went out July 16 and were verified in Gmail Sent: Air Care, 911 Air Repair, Precise Air &amp; Heating, Authorized AC, and Accurate Air. Mercury copy angles and trust lines were logged.</span>
+          </div>
+          <div class="list-item">
+            <strong>Batch 3/4 follow-ups sent</strong>
+            <span>Seven Follow-Up 1 emails went out July 17 to Z PLUMBERZ, Falcon Air, Emergency Air, GOAT Roofing, PlumbSmart, Weather Masters / AC Dudes, and Discount ACR. Gmail Sent verified 1-7 of 7.</span>
+          </div>
+          <div class="list-item">
+            <strong>July 17 social live</strong>
+            <span>Hot Leads Up was published through native Instagram after a managed-browser restart and direct CDP file-input targeting; live URL: https://www.instagram.com/briefrelay/p/Da5wEL2ER4C/.</span>
+          </div>
+          <div class="list-item">
+            <strong>Marketing function added</strong>
+            <span>Mercury now owns a daily operating plan, next-7 post queue, fun email V2, and marketing backlog.</span>
+          </div>
+          <div class="list-item">
+            <strong>Company operating plan added</strong>
+            <span>Jarvis now owns proactive execution, board updates, and deciding next tasks without waiting for repeated prompts.</span>
+          </div>
+          <div class="list-item">
+            <strong>Daily assets staged ahead</strong>
+            <span>July 20-26 social images are rendered as 1080 PNGs; July 20-25 are live and July 26 is queued.</span>
+          </div>
+          <div class="list-item">
+            <strong>Design function added</strong>
+            <span>Vega is the dedicated Brand Designer agent and final design critic for campaign visuals, style standards, and asset quality.</span>
+          </div>
+          <div class="list-item">
+            <strong>First social channel launched</strong>
+            <span>Instagram account @briefrelay is live with the first Inbox Bermuda Triangle post published.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="span-12">
+        <div class="section-head">
+          <h2>Marketing Campaign</h2>
+          <span class="small">Fun campaign platform and launch status</span>
+        </div>
+        <div class="pipeline">
+          <div class="stage">
+            <div class="metric-label">Campaign Owner</div>
+            <strong>Mercury</strong>
+            <span>Marketing Manager agent for BriefRelay demand generation.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Design Owner</div>
+            <strong>Vega</strong>
+            <span>Brand Designer agent for visual standards, logo, board style, and campaign polish.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Campaign</div>
+            <strong>Inbox Bermuda</strong>
+            <span>Humor aimed at lost leads, owner overload, and inbox chaos.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Content Package</div>
+            <strong>Expanded</strong>
+            <span>30-day calendar, next 7 captions, July 20-26 rendered batch, and fun email V2 are ready.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Instagram</div>
+            <strong>Daily</strong>
+            <span>@briefrelay is live with 12 posts. July 25 HVAC Lead Aging Like Milk was recovered and published July 27 through native Instagram CDP feed-media input targeting.</span>
+          </div>
+          <div class="stage">
+            <div class="metric-label">Style Guide</div>
+            <strong>Applied</strong>
+            <span>Board, logo, and campaign direction now use Vega's fun-bold system with the cleaner V4D Lead Lift logo.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="span-8">
+        <div class="section-head">
+          <h2>Outreach Batch 1</h2>
+          <span class="small">Sent July 8, 2026 from briefrelayops@gmail.com</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Business</th>
+              <th>Vertical</th>
+              <th>Angle</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sweet Dreams Plumbing</td>
+              <td>Plumbing</td>
+              <td>Same-day service leads and urgent plumbing requests</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Harper's Roofing</td>
+              <td>Roofing</td>
+              <td>Roof issue emails and free estimate requests</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Mesa Roofing LLC</td>
+              <td>Roofing</td>
+              <td>Repair/replacement estimate requests</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Stradling Roofing</td>
+              <td>Roofing</td>
+              <td>Free estimate and roof repair intake</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Almeida Roofing</td>
+              <td>Roofing</td>
+              <td>Repair inquiry and lead follow-up</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="span-8">
+        <div class="section-head">
+          <h2>Outreach Batch 2</h2>
+          <span class="small">Sent July 9, 2026 from briefrelayops@gmail.com</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Business</th>
+              <th>Vertical</th>
+              <th>Angle</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Axis Roofing</td>
+              <td>Roofing</td>
+              <td>Inspection and financing inquiry follow-up</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>East Valley Roofing and Repair</td>
+              <td>Roofing</td>
+              <td>Free quote and repair inquiry intake</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Dwell Roof</td>
+              <td>Roofing</td>
+              <td>Free inspection and estimate follow-up</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Romco Roofing</td>
+              <td>Roofing</td>
+              <td>Storm damage and roof inspection requests</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Norris Air</td>
+              <td>HVAC</td>
+              <td>Emergency AC repair lead intake</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="span-8">
+        <div class="section-head">
+          <h2>Outreach Batch 3</h2>
+          <span class="small">Sent July 10, 2026 from briefrelayops@gmail.com</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Business</th>
+              <th>Vertical</th>
+              <th>Angle</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>HAVN Roofing</td>
+              <td>Roofing</td>
+              <td>Roof inspection request intake and follow-up</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Mighty Dog Roofing East Valley</td>
+              <td>Roofing</td>
+              <td>Free inspection and emergency roofing inquiry follow-up</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Z PLUMBERZ of East Valley</td>
+              <td>Plumbing</td>
+              <td>Emergency plumbing and request-service lead intake</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Falcon Air Conditioning</td>
+              <td>HVAC</td>
+              <td>Emergency AC repair lead intake</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Emergency Air Heating Cooling &amp; Plumbing</td>
+              <td>HVAC/Plumbing</td>
+              <td>Same-day AC and plumbing inquiry follow-up</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="span-8">
+        <div class="section-head">
+          <h2>Outreach Batch 4</h2>
+          <span class="small">Sent July 13, 2026 from briefrelayops@gmail.com</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Business</th>
+              <th>Vertical</th>
+              <th>Angle</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GOAT Roofing</td>
+              <td>Roofing</td>
+              <td>Roof leads should not need a search party</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>PlumbSmart</td>
+              <td>Plumbing/HVAC</td>
+              <td>Same-day plumbing and AC leads minus inbox fog</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Weather Masters / AC Dudes</td>
+              <td>HVAC</td>
+              <td>Emergency AC leads hate waiting rooms</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>The Cooling &amp; Plumbing Co</td>
+              <td>HVAC/Plumbing</td>
+              <td>Hot leads should sit on top</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+            <tr>
+              <td>Discount ACR</td>
+              <td>HVAC</td>
+              <td>Same-day AC leads minus inbox fog</td>
+              <td><span class="tag sent">Sent</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="span-4">
+        <div class="section-head">
+          <h2>Operating Metrics</h2>
+          <span class="small">Early-stage controls</span>
+        </div>
+        <table>
+          <tbody>
+            <tr><td>Outreach limit</td><td>10/day</td></tr>
+            <tr><td>Sent July 15</td><td>5 Batch 5 outreach emails; verified in Gmail Sent; Guardian later bounced</td></tr>
+            <tr><td>Sent July 16</td><td>10 outreach emails total: 5 Batch 2 Follow-Up 1 emails verified at 8:05-8:07 MDT, plus 5 Batch 6 first-touch emails verified at 10:24-10:25 MDT</td></tr>
+            <tr><td>Sent July 17</td><td>7 Follow-Up 1 emails to Batch 3/4 eligible contacts; Gmail Sent verified 1-7 of 7 at 8:02-8:07 MDT</td></tr>
+            <tr><td>Sent July 18</td><td>4 Batch 1 Follow-Up 2 close-loop emails; Gmail Sent verified 1-4 of 4 at 8:08-8:09 MDT; 6 sends remain under daily cap</td></tr>
+            <tr><td>Sent July 20</td><td>5 Batch 7 first-touch emails; Gmail Sent verified 1-5 of 5 at 8:08-8:10 MDT; 5 sends remain under daily cap</td></tr>
+            <tr><td>Sent July 22</td><td>9 Batch 5/6 Follow-Up 1 emails; Guardian excluded because it bounced; Gmail Sent verified 1-9 of 9 at 8:04-8:06 MDT; 1 send remains under daily cap</td></tr>
+            <tr><td>Sent July 23</td><td>Batch 7 Follow-Up 1 duplicated during browser/session recovery: Icon Roofing, Ryan Mechanical, Arid Valley Plumbing, Ground Zero, and Gold Star each received two copies; Gmail Sent verified 1-10 of 10 at 8:03-8:13 MDT; daily cap consumed</td></tr>
+            <tr><td>July 24 operator</td><td>Blocked before execution by Codex subscription usage limit; no Gmail/Instagram browser automation run completed</td></tr>
+            <tr><td>July 24 recovery</td><td>Instagram post published and verified; Gmail reply/bounce/spam checks clean; no outreach email sent because due items were monitor-only and Batch 7 was over-contacted</td></tr>
+            <tr><td>July 27 recovery</td><td>8 AM cron aborted, but manual recovery completed: Gmail reply/bounce/spam checks clean, no eligible outreach sent, July 25 HVAC Lead Aging Like Milk published and verified, and the daily cron was tightened to a lower-token recovery prompt</td></tr>
+            <tr><td>Total public prospects researched</td><td>35 prospects; 35 contacted</td></tr>
+            <tr><td>Total outreach emails</td><td>75 emails</td></tr>
+            <tr><td>Staged next batch</td><td>Needs replacement/research queue for bounced contacts and next scored 16+ prospects</td></tr>
+            <tr><td>Internal updates</td><td>2 recipients</td></tr>
+            <tr><td>Primary price</td><td>$750 pilot</td></tr>
+            <tr><td>Recurring option</td><td>$300-$1,000/month</td></tr>
+            <tr><td>Follow-up status</td><td>Batch 1 Follow-Up 2 sent to 4 non-bounced/non-opted-out prospects; Batch 2-7 eligible Follow-Up 1 sent; Batch 7 next monitoring window is July 29</td></tr>
+            <tr><td>Known bounces</td><td>HAVN-related downstream address, AZCPG/The Cooling & Plumbing Co, Guardian Contracting Group</td></tr>
+            <tr><td>Growth ops</td><td>10:20 weekdays MT; pared down to the daily 8:00 operator run unless Kevin re-enables extra checks</td></tr>
+            <tr><td>Daily operator</td><td>8:00 daily MT</td></tr>
+            <tr><td>Marketing manager</td><td>Mercury</td></tr>
+            <tr><td>Brand designer</td><td>Vega</td></tr>
+            <tr><td>Primary campaign</td><td>The Inbox Bermuda Triangle</td></tr>
+            <tr><td>Instagram account</td><td>@briefrelay</td></tr>
+            <tr><td>Live social posts</td><td>12 live; July 25 HVAC Lead Aging Like Milk published July 27 at https://www.instagram.com/briefrelay/p/DbTXhJgkRP6/</td></tr>
+            <tr><td>Next post</td><td>July 26 Sunday Desk Reset #2 is queued</td></tr>
+            <tr><td>Design guide</td><td><a href="briefrelay-style-guide.html">Vega V4D active</a></td></tr>
+            <tr><td>Brand tone</td><td>Fun, bold, friendly, funny</td></tr>
+            <tr><td>Logo refresh</td><td>V4D Lead Lift active locally</td></tr>
+            <tr><td>Instagram logo</td><td>V4D updated and verified</td></tr>
+            <tr><td>Google/Gmail logo</td><td>V4D upload blocked by Google photo dialog</td></tr>
+            <tr><td>V3 carousel assets</td><td>4 PNGs ready</td></tr>
+            <tr><td>30-day marketing plan</td><td>Published in Mercury workspace</td></tr>
+            <tr><td>Business plan</td><td><a href="data/ai-money-venture/briefrelay-business-plan-2026-07-13.md">Active Jul 13</a></td></tr>
+            <tr><td>Website</td><td><a href="https://getbriefrelay.github.io/">Customer-facing V1 live on the branded `getbriefrelay` GitHub Pages account</a></td></tr>
+            <tr><td>Company operating plan</td><td><a href="data/ai-money-venture/briefrelay-company-operating-plan-2026-07-12.md">Active</a></td></tr>
+            <tr><td>Ready asset queue</td><td>Jul 23-26 staged; Jul 19 remains missed/staged, not back-posted</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="span-6">
+        <div class="section-head">
+          <h2>Milestones</h2>
+          <span class="small">Dated project history</span>
+        </div>
+        <div class="timeline">
+          <div class="event">
+            <div class="date">Jul 8</div>
+            <div><strong>Brand account live</strong><span>BriefRelay Gmail and profile avatar established.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 8</div>
+            <div><strong>Credential storage path ready</strong><span>macOS Keychain helper scripts created for the Gmail password.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 8</div>
+            <div><strong>Stakeholder briefing sent</strong><span>Kevin and Matt received a BriefRelay launch/outreach update.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 8</div>
+            <div><strong>Batch 1 sent</strong><span>Five public-email prospects contacted.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 8</div>
+            <div><strong>Reply checks scheduled</strong><span>Weekday checks at 9:00, 13:00, 17:00 MT.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 9</div>
+            <div><strong>Batch 2 sent</strong><span>Five more public-email prospects contacted and verified in Gmail Sent.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 10</div>
+            <div><strong>Batch 3 sent</strong><span>Five qualified public-email prospects contacted and verified in Gmail Sent.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 13</div>
+            <div><strong>Batch 4 sent</strong><span>Five Mercury-template public-email prospects contacted and verified in Gmail Sent.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 13</div>
+            <div><strong>Batch 1 follow-ups sent</strong><span>Five Follow-Up 1 emails sent and verified in Gmail Sent: Sweet Dreams, Harper's, Mesa Roofing, Stradling, and Almeida.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 17</div>
+            <div><strong>Batch 3/4 follow-ups sent</strong><span>Seven Follow-Up 1 emails sent and verified in Gmail Sent: Z PLUMBERZ, Falcon Air, Emergency Air, GOAT Roofing, PlumbSmart, Weather Masters / AC Dudes, and Discount ACR.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 17</div>
+            <div><strong>Batch 7 staged</strong><span>Five scored 16+ public contacts staged for Mercury review; no new email sent in growth-ops because only 3 conservative sends remained under cap.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 17</div>
+            <div><strong>Hot Leads Up live</strong><span>Published via native Instagram using direct CDP file-input targeting; profile verified at 5 posts and V4D avatar restored.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 18</div>
+            <div><strong>Batch 1 close-loop sent</strong><span>Four Follow-Up 2 emails sent and verified in Gmail Sent: Sweet Dreams, Harper's, Mesa Roofing, and Stradling. Almeida excluded as not interested.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 18</div>
+            <div><strong>Things Found In The Inbox live</strong><span>Published via native Instagram using direct CDP file-input targeting; profile verified at 6 posts and V4D avatar still active.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 20</div>
+            <div><strong>Batch 7 sent</strong><span>Five first-touch emails sent and verified in Gmail Sent: Icon Roofing, Ryan Mechanical, Arid Valley, Ground Zero, and Gold Star.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 20</div>
+            <div><strong>Roof Leak Next To Newsletter live</strong><span>Published via native Instagram using direct CDP file-input targeting; profile verified at 7 posts.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 20</div>
+            <div><strong>Daily queue repaired</strong><span>July 20-26 Instagram assets were rendered, exported to PNG, and linked into Mercury's next-7 plan.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 21</div>
+            <div><strong>Missed Lead Confession #2 live</strong><span>Published via native Instagram direct CDP file-input targeting after the 8 AM operator run aborted; profile verified at 8 posts.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 22</div>
+            <div><strong>Follow-Up Did Not Ghost You live</strong><span>Published via native Instagram direct CDP file-input targeting after Business Suite login blocked the preferred route; profile verified at 9 posts.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 22</div>
+            <div><strong>Batch 5/6 follow-ups sent</strong><span>Nine eligible Follow-Up 1 emails sent and verified in Gmail Sent; Guardian excluded because it bounced.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 23</div>
+            <div><strong>Batch 7 follow-ups sent</strong><span>Five eligible Follow-Up 1 emails sent after Gmail checks found no human replies, no new bounces, and spam empty.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 23</div>
+            <div><strong>Before/After Brief live</strong><span>Published via native Instagram direct CDP file-input targeting; older duplicate was deleted and profile verified at 10 posts.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 24</div>
+            <div><strong>Daily operator recovered</strong><span>8 AM run failed before execution on Codex subscription usage limits, but same-day recovery completed Gmail checks and published No Autopilot Promises.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 24</div>
+            <div><strong>No Autopilot Promises live</strong><span>Published via native Instagram CDP after a managed-browser restart; profile verified at 11 posts. Gmail checks were clean and no outreach email was eligible today.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 27</div>
+            <div><strong>HVAC Lead Aging Like Milk live</strong><span>Manual recovery fixed the aborted 8 AM run: Gmail checks were clean, no outreach email was eligible, the post is live at https://www.instagram.com/briefrelay/p/DbTXhJgkRP6/, and @briefrelay verified at 12 posts.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Tunnel watchdog added</strong><span>Status server and public tunnel now have a 5-minute launchd watchdog.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Mercury created</strong><span>New Marketing Manager agent installed with BriefRelay campaign responsibilities.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Campaign package produced</strong><span>Mercury delivered the first funny campaign plan and social content queue.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Instagram launched</strong><span>@briefrelay profile is live and the first post published.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Vega created</strong><span>New Brand Designer agent installed to own BriefRelay design guide and visual quality.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Creative V2 ready</strong><span>Improved Inbox Bermuda Triangle carousel assets rendered and visually checked.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Vega V3 style guide published</strong><span>Browser-viewable guide now documents the fun, bold, never-boring-business visual direction.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Logo V4D promoted</strong><span>Cleaner Lead Lift avatar rendered and promoted as the local BriefRelay logo asset.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Profile logos updated</strong><span>Instagram shows the V4D logo; Google/Gmail is pending because Google's photo dialog did not attach the upload file.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Daily marketing cadence installed</strong><span>Mercury operating plan, next-7 post queue, fun email V2, and 8:30 daily marketing cron are active.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Company review started</strong><span>Kevin's proactive operating mandate was written to memory and translated into a company operating plan.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Daily queue expanded</strong><span>July 14-19 Instagram assets were rendered, visually checked, and linked into Mercury's next-7 plan.</span></div>
+          </div>
+          <div class="event">
+            <div class="date">Jul 12</div>
+            <div><strong>Stale V3 builder guarded</strong><span>Old V3 generator now refuses to run by default so it cannot accidentally overwrite V4D branding.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="span-6">
+        <div class="section-head">
+          <h2>Risk Register</h2>
+          <span class="small">Board-level controls</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Risk</th>
+              <th>Level</th>
+              <th>Control</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gmail CLI auth</td>
+              <td><span class="tag risk">Medium</span></td>
+              <td>gws Gmail token returned invalid_grant; browser Gmail remains usable, but CLI OAuth should be refreshed.</td>
+            </tr>
+            <tr>
+              <td>New Gmail deliverability</td>
+              <td><span class="tag risk">Medium</span></td>
+              <td>Low daily volume, plain text, no links or attachments.</td>
+            </tr>
+            <tr>
+              <td>No proof yet</td>
+              <td><span class="tag risk">Medium</span></td>
+              <td>Use fake-data demo, then secure first pilot testimonial.</td>
+            </tr>
+            <tr>
+              <td>Gmail recovery-phone warning</td>
+              <td><span class="tag risk">Medium</span></td>
+              <td>Account remains usable, but Kevin should add recovery phone when convenient.</td>
+            </tr>
+            <tr>
+              <td>Scope creep</td>
+              <td><span class="tag risk">Medium</span></td>
+              <td>First pilot limited to one lead source and approval-only drafts.</td>
+            </tr>
+            <tr>
+              <td>New Instagram account security</td>
+              <td><span class="tag risk">Medium</span></td>
+              <td>Password stored in macOS Keychain; add recovery/2FA hardening when the account settles.</td>
+            </tr>
+            <tr>
+              <td>Instagram posting/upload fragility</td>
+              <td><span class="tag warn">Medium</span></td>
+              <td>Business Suite upload still fails to attach media, but July 20 was recovered by targeting only the native create-post media input directly with CDP. Avoid hidden profile-photo inputs.</td>
+            </tr>
+            <tr>
+              <td>Basic-looking creative</td>
+              <td><span class="tag risk">Low</span></td>
+              <td>Vega guide and V4D logo now drive assets; July 20-26 post images were rendered and July 20 was visually checked.</td>
+            </tr>
+            <tr>
+              <td>Profile-logo rollout</td>
+              <td><span class="tag risk">Low</span></td>
+              <td>Instagram V4D logo verified. Google/Gmail still needs a successful photo-dialog upload or manual browser handoff.</td>
+            </tr>
+            <tr>
+              <td>Stale brand tooling</td>
+              <td><span class="tag risk">Low</span></td>
+              <td>V3 builder now refuses to run unless explicitly allowed; current daily assets use the V4D-safe builder.</td>
+            </tr>
+            <tr>
+              <td>OpenClaw memory search</td>
+              <td><span class="tag risk">Medium</span></td>
+              <td>Index repair attempted but blocked by embedding quota errors; durable file memory remains updated manually.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="span-12">
+        <div class="section-head">
+          <h2>AI-Speed Execution Window</h2>
+          <span class="small">Build now, test quickly, respect real external bottlenecks</span>
+        </div>
+        <div class="grid">
+          <div class="card span-4" style="padding:14px;">
+            <div class="metric-label">Same day</div>
+            <h3>Build the conversion assets</h3>
+            <p class="small">Website V1 is live on the branded free GitHub Pages URL; next up is the pilot explainer and fake-data owner brief CTA packet.</p>
+          </div>
+          <div class="card span-4" style="padding:14px;">
+            <div class="metric-label">Next 24 hours</div>
+            <h3>Test the channels</h3>
+            <p class="small">Monitor Batch 7 for reply/bounce impact from the duplicate follow-up and keep July 26 Sunday Desk Reset #2 ready.</p>
+          </div>
+          <div class="card span-4" style="padding:14px;">
+            <div class="metric-label">Next 72 hours</div>
+            <h3>Learn fast</h3>
+            <p class="small">Use replies, non-replies, bounces, and site/CTA readiness to sharpen the offer before scaling outreach.</p>
+          </div>
+        </div>
+        <p class="footer-note">Data source: BriefRelay project notes, outreach logs, Mercury and Vega workspaces, and marketing assets in `/Users/jarvis/.openclaw/workspace`.</p>
+      </section>
+
+      <section class="span-12">
+        <div class="section-head">
+          <h2>Team Avatars</h2>
+          <span class="small">Unified internal cast</span>
+        </div>
+        <p class="small" style="margin-bottom:14px;">A shared visual family for Telegram, Instagram, reports, and future website use. Keep them as bold work-symbol avatars, not headshots.</p>
+        <div class="team-avatar-grid">
+          <div class="team-avatar">
+            <img src="assets/briefrelay/team-avatars/mercury-marketing-manager.png" alt="Mercury Marketing Manager avatar">
+            <div>
+              <strong>Mercury</strong>
+              <span>Marketing Manager - megaphone and signal paths.</span>
+            </div>
+          </div>
+          <div class="team-avatar">
+            <img src="assets/briefrelay/team-avatars/vega-design-manager.png" alt="Vega Design Manager avatar">
+            <div>
+              <strong>Vega</strong>
+              <span>Design Manager - palette, pencil, and critique marks.</span>
+            </div>
+          </div>
+          <div class="team-avatar">
+            <img src="assets/briefrelay/team-avatars/jarvis-ceo.png" alt="Jarvis CEO avatar">
+            <div>
+              <strong>Jarvis</strong>
+              <span>CEO - operating desk, crown tabs, and relay arc.</span>
+            </div>
+          </div>
+          <div class="team-avatar">
+            <img src="assets/briefrelay/team-avatars/matt-board-member.png" alt="Matt Board Member avatar">
+            <div>
+              <strong>Matt</strong>
+              <span>Board Member - board panel and review blocks.</span>
+            </div>
+          </div>
+          <div class="team-avatar">
+            <img src="assets/briefrelay/team-avatars/kevin-president.png" alt="Kevin President avatar">
+            <div>
+              <strong>Kevin</strong>
+              <span>President - approval check, document, and flag.</span>
+            </div>
+          </div>
+        </div>
+        <p class="asset-note">Files: <code>assets/briefrelay/team-avatars/</code>. Use PNG for profile photos and SVG for reports or website placement.</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

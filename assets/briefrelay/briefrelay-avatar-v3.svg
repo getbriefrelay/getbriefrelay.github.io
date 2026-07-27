@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="pop" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#071615" flood-opacity=".34"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="210" fill="#F46D4F"/>
+  <path d="M0 780 C190 690 300 810 512 724 C706 646 810 506 1024 592 L1024 1024 L0 1024 Z" fill="#F2B84B"/>
+  <circle cx="812" cy="194" r="118" fill="#24B3A7"/>
+  <circle cx="160" cy="180" r="74" fill="#F7F1E6" opacity=".55"/>
+  <g filter="url(#pop)">
+    <rect x="136" y="170" width="752" height="612" rx="110" fill="#102A2D"/>
+    <path d="M220 620 C338 552 470 550 600 612" fill="none" stroke="#24B3A7" stroke-width="42" stroke-linecap="round"/>
+    <path d="M584 548 L728 632 L584 716" fill="none" stroke="#24B3A7" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="224" cy="620" r="58" fill="#F46D4F"/>
+    <circle cx="512" cy="584" r="44" fill="#F7F1E6"/>
+    <circle cx="736" cy="632" r="58" fill="#F2B84B"/>
+    <text x="232" y="456" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="230" font-weight="950">BR</text>
+    <path d="M292 510 C410 578 576 578 704 510" fill="none" stroke="#F2B84B" stroke-width="30" stroke-linecap="round"/>
+  </g>
+  <rect x="260" y="806" width="504" height="74" rx="37" fill="#102A2D"/>
+  <text x="318" y="855" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="950">HOT LEADS UP</text>
+</svg>

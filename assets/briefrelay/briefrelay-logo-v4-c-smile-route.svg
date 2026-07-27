@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">BriefRelay logo concept V4C</title>
+  <desc id="desc">A refined BR monogram with a smile route and confident colorful badge.</desc>
+  <defs>
+    <linearGradient id="field" x1="138" y1="100" x2="900" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#102A2D"/>
+      <stop offset="1" stop-color="#17383A"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#102A2D" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="#F7F1E6"/>
+  <path d="M0 780 C150 672 328 760 496 650 C670 536 804 414 1024 476 L1024 1024 L0 1024 Z" fill="#F46D4F"/>
+  <path d="M0 860 C210 740 348 832 560 726 C736 638 836 590 1024 634 L1024 1024 L0 1024 Z" fill="#F2B84B"/>
+  <g filter="url(#shadow)">
+    <rect x="164" y="170" width="696" height="696" rx="162" fill="url(#field)"/>
+    <circle cx="738" cy="286" r="74" fill="#24B3A7"/>
+    <circle cx="276" cy="726" r="66" fill="#F46D4F"/>
+    <text x="238" y="552" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="250" font-weight="950" letter-spacing="-8">BR</text>
+    <path d="M302 620 C424 710 604 708 726 618" fill="none" stroke="#F2B84B" stroke-width="34" stroke-linecap="round"/>
+    <path d="M656 586 L734 618 L686 690" fill="none" stroke="#F2B84B" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M306 340 H694" stroke="#24B3A7" stroke-width="28" stroke-linecap="round"/>
+  </g>
+</svg>

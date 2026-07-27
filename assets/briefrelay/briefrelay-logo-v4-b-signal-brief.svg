@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">BriefRelay logo concept V4B</title>
+  <desc id="desc">A polished signal brief mark with an abstract lead card and relay arc.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#102A2D" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="#102A2D"/>
+  <circle cx="784" cy="214" r="132" fill="#24B3A7"/>
+  <circle cx="234" cy="810" r="184" fill="#F46D4F"/>
+  <path d="M0 686 C180 610 300 684 478 590 C632 508 744 390 1024 386 L1024 1024 L0 1024 Z" fill="#F2B84B"/>
+  <g filter="url(#shadow)">
+    <path d="M248 210 H682 C742 210 790 258 790 318 V692 C790 752 742 800 682 800 H248 C188 800 140 752 140 692 V318 C140 258 188 210 248 210 Z" fill="#F7F1E6"/>
+    <path d="M236 330 H690" stroke="#102A2D" stroke-width="34" stroke-linecap="round"/>
+    <path d="M236 458 H524" stroke="#102A2D" stroke-width="34" stroke-linecap="round" opacity=".88"/>
+    <path d="M236 586 H432" stroke="#102A2D" stroke-width="34" stroke-linecap="round" opacity=".78"/>
+    <path d="M534 660 C590 574 668 528 766 520" fill="none" stroke="#24B3A7" stroke-width="42" stroke-linecap="round"/>
+    <path d="M716 454 L828 520 L720 592" fill="none" stroke="#24B3A7" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="514" cy="662" r="44" fill="#F46D4F"/>
+    <circle cx="828" cy="520" r="44" fill="#F2B84B"/>
+  </g>
+  <text x="186" y="908" fill="#102A2D" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="950" letter-spacing="0">BriefRelay</text>
+</svg>
