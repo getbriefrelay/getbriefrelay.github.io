@@ -1,10 +1,10 @@
 # BriefRelay Company Operating Plan
 
-Updated: 2026-07-27 10:16 MDT  
+Updated: 2026-08-02 08:20 MDT  
 Owner: Jarvis  
 Marketing owner: Mercury  
 Design owner: Vega  
-Public board: `/Users/jarvis/.openclaw/workspace/briefrelay-status.html`
+Public board: `https://getbriefrelay.github.io/briefrelay-status.html`
 
 ## Operating Mandate
 
@@ -16,12 +16,12 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 - Target buyer: local service operators where slow response loses revenue.
 - Core pilot: one approved lead source, urgent lead flags, safe reply drafts for approval, follow-up tracking, daily owner brief.
 - Price anchor: $750 pilot, with $300-$1,000/month expansion path.
-- Public social: Instagram `@briefrelay`, 12 posts live as of 2026-07-27 10:16 MDT; July 25 HVAC Lead Aging Like Milk was recovered and published July 27 at `https://www.instagram.com/briefrelay/p/DbTXhJgkRP6/` after native Instagram CDP feed-media input recovery.
+- Public social: Instagram `@briefrelay`, 14 posts live as of 2026-08-02 08:20 MDT; August 1 Lead Archaeology remains newest at `https://www.instagram.com/briefrelay/p/DbgAzYokYTh/`. No August 2 post was published because no new approved August queue asset exists yet.
 - Public website: V1 static customer site is live on the branded free GitHub Pages URL `https://getbriefrelay.github.io/`; source repo is `https://github.com/getbriefrelay/getbriefrelay.github.io`.
 - Brand: Vega V4D / Lead Lift identity, fun-bold BriefRelay guide, buyer-safe humor.
 - Marketing: Mercury owns the calendar, copy, content backlog, and email/social campaign improvement.
-- Outreach: 75 outbound outreach emails sent as of 2026-07-27 10:16 MDT; July 23 Batch 7 Follow-Up 1 duplicated during browser/session recovery, so five Batch 7 prospects received two follow-up copies and Gmail Sent verified `1-10 of 10`. July 27 Gmail browser checks found no human replies, no targeted bounce/delivery messages, and spam empty. No outreach email was sent because Batch 7 is under duplicate-send guard and the next normal Batch 5/6 follow-up window is July 28; `gws` Gmail auth still fails with `invalid_grant`.
-- Board: local and public status page are live, with a 5-minute watchdog for the tunnel/server.
+- Outreach: 84 outbound outreach emails sent as of 2026-08-02 08:20 MDT; July 31 recovery sent nine Batch 5/6 Follow-Up 2 close-loop emails and Gmail Sent verified `1-9 of 9`. August 2 Gmail browser checks found no human prospect replies, no new prospect delivery failures, and spam empty. No outreach email was sent because there is no tracker-eligible approved send today, Batch 5/6 have completed Follow-Up 2, and Batch 7 remains under duplicate-send guard; `gws` Gmail auth still fails with `invalid_grant`.
+- Board: local source page is live, and the public status page is published on GitHub Pages. The localtunnel URL is retired as the canonical public board because the reserved subdomain repeatedly returned 502/503 despite a healthy local server.
 
 ## Audit Findings
 
@@ -45,7 +45,7 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 | Priority | Project | Owner | Next Action | Status |
 |---|---|---|---|---|
 | P0 | Daily Instagram execution | Jarvis + Mercury + Vega | Use Meta Business Suite first; if upload does not attach, publish through native Instagram web composer using direct CDP against the create-post file input | Active |
-| P0 | Board as source of truth | Jarvis | Keep board current; verify tunnel after updates | Active |
+| P0 | Board as source of truth | Jarvis | Keep board current locally, publish to GitHub Pages after updates, and verify the hosted URL | Active |
 | P1 | Email campaign V2 | Mercury + Jarvis | Check deliverability/replies, then send eligible outreach within mandate and caps | Active |
 | P1 | Brand asset consistency | Vega + Jarvis | Keep V4D active across board, guide, Instagram; retry Google/Gmail | Active |
 | P1 | Brand-forward website URL | Jarvis | Keep `https://getbriefrelay.github.io/` verified and update outreach/CTA links to use it | Active |
@@ -144,3 +144,15 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 - Gmail/outreach: managed browser Gmail was logged in as `briefrelayops@gmail.com`. Broad search `newer_than:3d -in:sent -in:drafts` returned no messages; targeted 7-day delivery/bounce search returned no messages; spam `newer_than:7d` returned no messages. `gws` Gmail auth still fails with `invalid_grant`. No outreach email was sent because Batch 7 remains under the duplicate-send guard and Batch 5/6 next normal follow-up window is July 28.
 - Instagram: July 25 HVAC Lead Aging Like Milk was recovered and published on July 27 via native Instagram CDP feed-media input targeting. Live URL: `https://www.instagram.com/briefrelay/p/DbTXhJgkRP6/`. `@briefrelay` verified at 12 posts with the no-cooling lead graphic newest.
 - Remaining watch item: the cron history still shows the July 27 8 AM run as failed, but the business work from that blocked run has been manually recovered and the future cron configuration has been tightened.
+
+## 2026-08-01 Operator Note
+
+- Gmail/outreach: `gws` Gmail auth still fails with `invalid_grant`; managed browser remained logged in as `briefrelayops@gmail.com`. Search `in:anywhere newer_than:1d -in:sent -in:drafts` returned no messages, targeted delivery/bounce search showed only the internal Matt campaign-review thread, and spam was empty. No outreach email was sent because no tracker item is eligible today, Batch 5/6 have completed Follow-Up 2, and Batch 7 remains under duplicate-send guard.
+- Instagram: Lead Archaeology was published with native Instagram CDP feed-media input targeting after normal upload returned `ok` without attaching media. Live URL: `https://www.instagram.com/briefrelay/p/DbgAzYokYTh/`; profile verified at 14 posts.
+- Next action: build the next August Instagram queue/assets and research a replacement prospect batch before any new first-touch outreach.
+
+## 2026-08-02 Operator Note
+
+- Gmail/outreach: `gws` Gmail auth still fails with `invalid_grant`; managed browser remained logged in as `briefrelayops@gmail.com`. Broad non-sent last-day search returned no messages, targeted seven-day delivery/bounce search showed only the known internal Matt campaign-review thread, and spam was empty. No outreach email was sent because no tracker item is eligible today, Batch 5/6 have completed Follow-Up 2, and Batch 7 remains under duplicate-send guard.
+- Instagram: no post published today because no approved current August asset queue exists. `@briefrelay` was verified at 14 posts with August 1 Lead Archaeology still newest at `https://www.instagram.com/briefrelay/p/DbgAzYokYTh/`.
+- Next action: create the next August Instagram queue/assets and research a replacement prospect batch before any new first-touch outreach.
