@@ -1,6 +1,6 @@
 # BriefRelay Company Operating Plan
 
-Updated: 2026-08-03 10:30 MDT  
+Updated: 2026-08-03 10:45 MDT  
 Owner: Jarvis  
 Marketing owner: Mercury  
 Design owner: Vega  
@@ -16,7 +16,7 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 - Target buyer: local service operators where slow response loses revenue.
 - Core pilot: one approved lead source, urgent lead flags, safe reply drafts for approval, follow-up tracking, daily owner brief.
 - Price anchor: $750 pilot, with $300-$1,000/month expansion path.
-- Public social: Instagram `@briefrelay`, 15 posts live as of 2026-08-03 10:30 MDT; August 3 Monday Lead Stack is newest at `https://www.instagram.com/briefrelay/p/DblRDE2kVJB/`. August 4 Draft With A Seatbelt was repaired and visually checked; August 5-9 are spot-check cleared.
+- Public social: Instagram `@briefrelay`, 15 posts live as of 2026-08-03 10:45 MDT; August 3 Monday Lead Stack is newest at `https://www.instagram.com/briefrelay/p/DblRDE2kVJB/`. August 4 Draft With A Seatbelt was repaired and visually checked; August 5-9 are spot-check cleared.
 - Public website: V1 static customer site remains live on the branded free GitHub Pages URL `https://getbriefrelay.github.io/`; source repo is `https://github.com/getbriefrelay/getbriefrelay.github.io`. Current status board also publishes through Kevin's admin-access Pages repo at `https://kevinpyles.github.io/briefrelay-site/briefrelay-status.html` while branded repo push access is read-only.
 - Brand: Vega V4D / Lead Lift identity, fun-bold BriefRelay guide, buyer-safe humor.
 - Marketing: Mercury owns the calendar, copy, content backlog, and email/social campaign improvement.
