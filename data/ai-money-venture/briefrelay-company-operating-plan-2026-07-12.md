@@ -1,10 +1,10 @@
 # BriefRelay Company Operating Plan
 
-Updated: 2026-08-03 10:45 MDT  
+Updated: 2026-08-03 15:45 MDT  
 Owner: Jarvis  
 Marketing owner: Mercury  
 Design owner: Vega  
-Public board: `https://kevinpyles.github.io/briefrelay-site/briefrelay-status.html`
+Public board: `https://getbriefrelay.github.io/briefrelay-status.html`
 
 ## Operating Mandate
 
@@ -16,12 +16,12 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 - Target buyer: local service operators where slow response loses revenue.
 - Core pilot: one approved lead source, urgent lead flags, safe reply drafts for approval, follow-up tracking, daily owner brief.
 - Price anchor: $750 pilot, with $300-$1,000/month expansion path.
-- Public social: Instagram `@briefrelay`, 15 posts live as of 2026-08-03 10:45 MDT; August 3 Monday Lead Stack is newest at `https://www.instagram.com/briefrelay/p/DblRDE2kVJB/`. August 4 Draft With A Seatbelt was repaired and visually checked; August 5-9 are spot-check cleared.
-- Public website: V1 static customer site remains live on the branded free GitHub Pages URL `https://getbriefrelay.github.io/`; source repo is `https://github.com/getbriefrelay/getbriefrelay.github.io`. Current status board also publishes through Kevin's admin-access Pages repo at `https://kevinpyles.github.io/briefrelay-site/briefrelay-status.html` while branded repo push access is read-only.
+- Public social: Instagram `@briefrelay`, 15 posts live as of 2026-08-03 15:45 MDT; August 3 Monday Lead Stack is newest at `https://www.instagram.com/briefrelay/p/DblRDE2kVJB/`. August 4 Draft With A Seatbelt was repaired and visually checked; August 5-9 are spot-check cleared.
+- Public website/board: V1 static customer site and current status board are live on the branded free GitHub Pages URL `https://getbriefrelay.github.io/`; source repo is `https://github.com/getbriefrelay/getbriefrelay.github.io`. Kevin's admin-access Pages repo at `https://kevinpyles.github.io/briefrelay-site/briefrelay-status.html` remains a fallback mirror.
 - Brand: Vega V4D / Lead Lift identity, fun-bold BriefRelay guide, buyer-safe humor.
 - Marketing: Mercury owns the calendar, copy, content backlog, and email/social campaign improvement.
-- Outreach: 84 outbound outreach emails sent as of 2026-08-03 09:27 MDT; July 31 recovery sent nine Batch 5/6 Follow-Up 2 close-loop emails and Gmail Sent verified `1-9 of 9`. August 3 Gmail browser checks found no human prospect replies, no new prospect delivery failures, and spam empty. Batch 8 replacement prospects are staged in `data/ai-money-venture/outreach/batch8_public_email_targets.csv` for approval; do not send until approved. `gws` Gmail auth still fails with `invalid_grant`, so browser Gmail is the operating path.
-- Board: local source page is live, and the current public status page is published on Kevin's GitHub Pages repo. The branded GitHub Pages account remains a customer-facing website path, but Kevin's current token only has read access to `getbriefrelay/getbriefrelay.github.io`, so board updates should publish to `kevinpyles/briefrelay-site` until branded account credentials are refreshed.
+- Outreach: 84 outbound outreach emails sent as of 2026-08-03 09:27 MDT; July 31 recovery sent nine Batch 5/6 Follow-Up 2 close-loop emails and Gmail Sent verified `1-9 of 9`. August 3 Gmail browser checks found no human prospect replies, no new prospect delivery failures, and spam empty. Batch 8 replacement prospects are staged in `data/ai-money-venture/outreach/batch8_public_email_targets.csv` for approval; do not send until approved. `gws` Gmail OAuth now reaches Google but is blocked because the OAuth app is still in testing and `briefrelayops@gmail.com` is not an approved tester, so browser Gmail remains the operating path.
+- Board: local source page is live, and the current public status page is published on the branded GitHub Pages repo using the stored `getbriefrelay` GitHub CLI config. Kevin's Pages repo remains a fallback mirror if branded auth fails.
 
 ## Audit Findings
 
@@ -34,8 +34,8 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 3. **The board is the right update channel but was stale.**  
    It still showed an older as-of time and did not clearly list the current company projects. Update the board whenever work moves forward or blocks.
 
-4. **Google/Gmail profile photo is not launch-blocking.**  
-   The asset is ready and Instagram already shows V4D. Google's browser upload dialog still needs a successful human/browser handoff, but daily BriefRelay operations should continue without waiting on this cosmetic sync.
+4. **Google/Gmail profile photo is updated.**  
+   The V4D avatar was uploaded through the Google Account photo dialog and visually verified on the About Me profile page. Google warned it can take a day or two to propagate across services.
 
 5. **Instagram posting has a working default path.**  
    Business Suite browser upload is unreliable and should not be retried as the primary route. Prepare the daily asset/caption, publish through the native Instagram web composer with CDP file-input targeting, and target only the create-post media input; the profile page also exposes hidden profile-photo file inputs.
@@ -48,7 +48,7 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 | P0 | Board as source of truth | Jarvis | Keep board current locally, publish to GitHub Pages after updates, and verify the hosted URL | Active |
 | P1 | Email campaign V2 | Mercury + Jarvis | Check deliverability/replies, then send eligible outreach within mandate and caps | Active |
 | P1 | Brand asset consistency | Vega + Jarvis | Keep V4D active across board, guide, Instagram; Google/Gmail photo sync is cosmetic/manual | Active |
-| P1 | Brand-forward website URL | Jarvis | Keep `https://getbriefrelay.github.io/` verified for the website and `https://kevinpyles.github.io/briefrelay-site/briefrelay-status.html` verified for current board updates until branded repo access is restored | Active |
+| P1 | Brand-forward website URL | Jarvis | Keep `https://getbriefrelay.github.io/` verified for the website/board; keep Kevin's Pages repo as a fallback mirror | Active |
 | P1 | Reusable content system | Vega + Mercury | Turn daily queue into repeatable templates | Active |
 | P2 | Outreach pipeline expansion | Mercury + Jarvis | Review/approve staged Batch 8 public-email prospects before any new first-touch outreach | Ready for approval |
 | P2 | Builder cleanup | Jarvis | Archive/update stale V3 generator to prevent accidental overwrite | Planned |
@@ -162,6 +162,7 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 - Cron status: the 08:00 BriefRelay operator plus 08:23 Mercury and Vega cron sessions aborted with `AbortError: agent run aborted` and left no usable transcript closeout.
 - Gmail/outreach: `gws` Gmail auth still fails with `invalid_grant`; managed browser remained logged in as `briefrelayops@gmail.com`. Search `in:anywhere newer_than:1d -in:sent -in:drafts` returned no messages, targeted seven-day delivery/bounce search showed only the known internal Matt campaign-review thread and no prospect delivery failure, and spam was empty. No outreach email was sent because no tracker item is eligible today, Batch 5/6 have completed Follow-Up 2, Batch 7 remains under duplicate-send guard, and no replacement prospect batch is approved.
 - Instagram: August 3 Monday Lead Stack was published through native Instagram after PNG/JPEG normal upload attempts hit Instagram's "Something went wrong" dialog. Direct CDP `DOM.setFileInputFiles` against only the create-post feed-media input worked. A duplicate post at `https://www.instagram.com/briefrelay/p/DblKV3CEQfo/` was deleted; the kept live post is `https://www.instagram.com/briefrelay/p/DblRDE2kVJB/`. Profile verified at 15 posts with V4D avatar still active.
-- Board: local board was updated and served HTTP 200. Branded GitHub Pages remained HTTP 200 but stale because Kevin's current GitHub token has read-only access to `getbriefrelay/getbriefrelay.github.io`.
+- Board: local board was updated and served HTTP 200. Branded GitHub Pages was refreshed through the stored `getbriefrelay` GitHub CLI config after Kevin's token proved read-only.
 - 10:30 MDT blocker alternatives: pushed the current board to Kevin's admin-access Pages repo `kevinpyles/briefrelay-site`; verified `https://kevinpyles.github.io/briefrelay-site/briefrelay-status.html` serves the August 3 board. Repaired the August 4 Draft With A Seatbelt SVG/PNG clipping and visually checked the regenerated PNG. Reclassified `gws` Gmail `invalid_grant` as non-blocking because managed-browser Gmail is logged in and is the supported operational route until a fresh interactive OAuth login is completed. Reclassified Instagram upload fragility as a default-CDP procedure rather than a blocker.
-- Next action: approve or revise staged Batch 8, then send only within the 10/day cap after the next reply/bounce check; restore branded GitHub account push access when the `getbriefrelay` credentials are available.
+- 15:45 MDT update: pushed the current board to the branded `getbriefrelay/getbriefrelay.github.io` repo using the stored `getbriefrelay` GitHub CLI config and verified `https://getbriefrelay.github.io/briefrelay-status.html` serves the current board. Updated Google/Gmail profile photo to the V4D avatar; Google accepted the save and the About Me page visually shows the new avatar, with Google's normal one-to-two-day propagation note. Retried `gws auth login --services gmail`; Google OAuth reached account selection, then blocked with `Error 403: access_denied` because the OAuth app named `Slide Deck` has not completed verification and the account is not an approved tester.
+- Next action: approve or revise staged Batch 8, then send only within the 10/day cap after the next reply/bounce check.
