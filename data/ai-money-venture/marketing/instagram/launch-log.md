@@ -177,3 +177,68 @@
 - Duplicate cleanup: the retry path created an older duplicate at `https://www.instagram.com/briefrelay/p/DbnvZ3Fkahc/`. Jarvis deleted that duplicate and kept the newest post.
 - Live post: `https://www.instagram.com/briefrelay/p/Dbnw9XAEa_q/`
 - Verification: Instagram displayed `Post shared` / `Your post has been shared`; after duplicate cleanup and profile refresh, `@briefrelay` showed 16 posts with the August 4 Draft With A Seatbelt post newest and the BriefRelay profile avatar still active.
+
+## 2026-08-05
+
+- Planned post recovered: Follow-Up Lot using `data/ai-money-venture/marketing/instagram/daily-queue-2026-08-03/2026-08-05-follow-up-parking-lot.png`.
+- Cause: the 8 AM BriefRelay operator cron reported `AbortError: agent run aborted`, and the board was still stamped August 4 until this same-day recovery.
+- Gmail/outreach check: managed browser Gmail was logged in as `briefrelayops@gmail.com`; `in:anywhere newer_than:1d -in:sent -in:drafts` returned no messages, targeted seven-day delivery/bounce search returned no messages, and spam was empty. No outreach email was sent because Batch 5/6 are complete through Follow-Up 2, Batch 7 remains under duplicate-send guard, and Batch 8 is staged but not approved.
+- Native Instagram upload: the normal OpenClaw upload returned `ok` but did not attach media. Direct CDP `DOM.setFileInputFiles` targeted only the create-post feed-media input accepting `image/avif,image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime`; the composer advanced through crop/edit/caption/share.
+- Caption used: Mercury's approved Follow-Up Lot caption about hot leads not getting parked forever, next touches mattering, and the next thing staying visible on the brief.
+- Live post: `https://www.instagram.com/briefrelay/p/DbqW0Yykfik/`
+- Verification: Instagram displayed `Post shared` / `Your post has been shared`; after profile refresh, `@briefrelay` showed 17 posts with the August 5 Follow-Up Lot post newest and the BriefRelay profile avatar still active.
+
+## 2026-08-10
+
+- Cron pause blocker: during the 08:05 MDT daily marketing ops run, Mercury found the newer main-workspace standing memory dated 2026-08-07: Kevin paused all BriefRelay work because it has not made money and has consumed too many tokens. No Gmail outreach, Instagram publishing, or browser verification was performed because this scheduled cron is not fresh explicit approval.
+- Prepared-only work: created the August 10-16 Instagram SVG/PNG queue at `data/ai-money-venture/marketing/instagram/daily-queue-2026-08-10/` and the caption handoff at `briefrelay-august-10-16-instagram-captions.md`. The August 10 Monday Inbox Roll Call PNG was visually checked and is readable/on-brand.
+- Current Instagram status remains unchanged from the latest verified check: `@briefrelay` has 17 live posts, with August 5 Follow-Up Lot newest at `https://www.instagram.com/briefrelay/p/DbqW0Yykfik/`.
+- Next action: keep BriefRelay marketing paused until Kevin explicitly reauthorizes external posting/outreach or restarts the daily cadence.
+
+## 2026-08-21
+
+- Daily ops check: reviewed the current BriefRelay marketing backlog, launch log, outreach tracker/log, Batch 8 staged prospects, and the latest prepared August 10-16 Instagram queue.
+- Current blocker: Kevin's 2026-08-07 standing pause remains active. This scheduled cron is not fresh explicit approval, so no Gmail outreach, Instagram publishing, browser verification, or new asset build was performed.
+- Prepared status: August 10-16 captions and 1080x1080 PNG assets remain staged; Batch 8 remains `needs_approval`; no approved outbound email exists today.
+- Next action: keep BriefRelay marketing paused until Kevin explicitly reauthorizes external posting/outreach or restarts the daily cadence.
+
+## 2026-08-24
+
+- Daily ops check: reviewed the current BriefRelay marketing backlog, launch log, outreach tracker/log, prospect tracker, and prepared August 10-16 Instagram queue.
+- Current blocker: Kevin's 2026-08-07 standing pause remains active. This scheduled cron is not fresh explicit approval, so no Gmail outreach, Instagram publishing, browser verification, or new asset build was performed.
+- Prepared status: August 10-16 captions and 1080x1080 PNG assets remain staged; Batch 8 remains `needs_approval`; no approved outbound email exists today.
+- Next action: keep BriefRelay marketing paused until Kevin explicitly reauthorizes external posting/outreach or restarts the daily cadence.
+
+## 2026-08-30
+
+- Daily ops check: reviewed the current BriefRelay marketing backlog, launch log, outreach tracker/log, prospect tracker, Batch 8 staged status, and the prepared August 10-16 Instagram queue.
+- Current blocker: Kevin's 2026-08-07 standing pause remains active. This scheduled cron is not fresh explicit approval, so no Gmail outreach, Instagram publishing, browser verification, or new asset build was performed.
+- Prepared status: August 10-16 captions and 1080x1080 PNG assets remain staged; Batch 8 remains `needs_approval`; no approved outbound email exists today.
+- Next action: keep BriefRelay marketing paused until Kevin explicitly reauthorizes external posting/outreach or restarts the daily cadence.
+
+## 2026-09-13
+
+- Daily ops check: reviewed current BriefRelay marketing backlog/log status, Batch 8 staged prospects, and the latest prepared August 10-16 Instagram queue.
+- Current blocker: Kevin's 2026-08-07 standing pause remains active. This scheduled cron is not fresh explicit approval, so no Gmail outreach, Instagram publishing, browser verification, or new asset build was performed.
+- Prepared status: August 10-16 captions and 1080x1080 PNG assets remain staged; Batch 8 remains `needs_approval`; no approved outbound email exists today.
+- Automation cleanup: removed stale cron `99c3fd54-095f-4623-96fe-c877c6a3eb75` (`briefrelay-daily-marketing-ops`) so the paused daily marketing ops check stops recurring.
+- Recall note: memory semantic search was unavailable because the index provenance classifier changed, so direct file reads were used for this check.
+- Next action: keep BriefRelay marketing paused until Kevin explicitly reauthorizes external posting/outreach or restarts the cadence.
+
+## 2026-09-13 Resume
+
+- Kevin explicitly reauthorized BriefRelay posting and email in the Telegram group at 22:01 MDT, so Mercury resumed normal marketing ops.
+- Planned post recovered: Monday Inbox Roll Call using `data/ai-money-venture/marketing/instagram/daily-queue-2026-08-10/2026-08-10-monday-inbox-roll-call.png`.
+- Native Instagram upload: copied the asset to `/Users/jarvis/.openclaw/media/inbound/briefrelay-2026-09-13-monday-inbox-roll-call.png`, opened native Instagram `Create -> Post`, used the feed-media file input accepting `image/avif,image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime`, added Mercury's approved caption, and shared.
+- Live post: `https://www.instagram.com/briefrelay/p/DdQQC1ZkS7b/`
+- Verification: Instagram displayed `Your post has been shared`; after profile refresh, `@briefrelay` showed 18 posts with the new post newest.
+
+## 2026-09-23
+
+- Planned post recovered: Competitor Replied First using `data/ai-money-venture/marketing/instagram/daily-queue-2026-09-15/2026-09-23-competitor-replied-first.png`.
+- Native Instagram upload: opened native Instagram `Create -> Post`, attached the prepared Sep 23 PNG, advanced through crop/edit/caption/share, and shared from the logged-in `@briefrelay` profile.
+- Live post: `https://www.instagram.com/briefrelay/p/Ddob_KWEdEQ/`
+- Verification: after profile refresh, `@briefrelay` showed 19 posts with the Sep 23 post newest.
+- Gmail/outreach check: managed browser Gmail was logged in as `briefrelayops@gmail.com`. Last-10-day search showed Instagram notices plus the already-known Agape Air delivery block; Agape Air was excluded from follow-up because its first-touch send had a delivery-block warning.
+- Email follow-ups executed: Batch 8 Follow-Up 1 sent to Pineapple Air Heating & Cooling, Western Sky Mechanical, Total Plumbing & Drain, and Storm Plumbing at 09:19 MDT through the logged-in Gmail browser.
+- Verification: Gmail Sent search for `in:sent after:2026/09/23 "The 11:47 PM estimate request"` showed four today results for the follow-up subject.
