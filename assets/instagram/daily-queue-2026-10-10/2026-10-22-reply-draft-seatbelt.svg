@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs><filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#102A2D" flood-opacity=".25"/></filter></defs>
+  <rect width="1080" height="1080" fill="#102A2D"/>
+  <path d="M0 744 C178 642 348 748 548 642 C728 546 858 474 1080 518 L1080 1080 L0 1080 Z" fill="#F46D4F"/>
+  <path d="M0 886 C242 752 414 850 636 724 C818 620 950 624 1080 666 L1080 1080 L0 1080 Z" fill="#24B3A7"/>
+  <g transform="translate(72 72)">
+    <rect x="0" y="0" width="936" height="936" rx="72" fill="#F7F1E6" stroke="#102A2D" stroke-width="10" filter="url(#shadow)"/>
+    <rect x="56" y="56" width="350" height="62" rx="31" fill="#102A2D"/>
+    <text x="84" y="99" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="950">SEATBELT ON</text>
+    
+    <g transform="translate(760 44)">
+      <rect width="112" height="112" rx="30" fill="#102A2D"/>
+      <rect x="22" y="20" width="68" height="62" rx="12" fill="#F7F1E6"/>
+      <path d="M30 34 L56 54 L82 34" fill="none" stroke="#102A2D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 89 C53 72 76 73 100 86" fill="none" stroke="#24B3A7" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="30" cy="89" r="10" fill="#F46D4F"/>
+      <circle cx="100" cy="86" r="10" fill="#F2B84B"/>
+    </g>
+    <text x="86" y="266" fill="#102A2D" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="950">Draft fast.</text>
+<text x="86" y="333" fill="#102A2D" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="950">Send slow.</text>
+    <rect x="674" y="284" width="210" height="220" rx="38" fill="#102A2D"/><path d="M728 290 V242 C728 184 830 184 830 242 V290" fill="none" stroke="#102A2D" stroke-width="30" stroke-linecap="round"/><circle cx="779" cy="386" r="28" fill="#F2B84B"/><rect x="766" y="406" width="26" height="54" rx="13" fill="#F2B84B"/><rect x="604" y="548" width="302" height="84" rx="42" fill="#F7F1E6" stroke="#102A2D" stroke-width="8"/><text x="656" y="602" fill="#102A2D" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="950">SEND LOCKED</text>
+    <rect x="80" y="636" width="776" height="126" rx="34" fill="#102A2D"/>
+    <text x="118" y="688" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="900">Speed helps most when approval is still</text>
+<text x="118" y="732" fill="#F7F1E6" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="900">buckled in.</text>
+    <rect x="80" y="812" width="724" height="70" rx="35" fill="#F2B84B" stroke="#102A2D" stroke-width="6"/>
+    <text x="114" y="859" fill="#102A2D" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="950">Nothing gets sent without yes.</text>
+  </g>
+</svg>
