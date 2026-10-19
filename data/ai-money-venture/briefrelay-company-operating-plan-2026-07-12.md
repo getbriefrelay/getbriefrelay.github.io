@@ -172,3 +172,28 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 - Gmail/outreach: managed browser Gmail remained logged in as `briefrelayops@gmail.com`. Last-day non-sent search returned no messages, targeted seven-day delivery/bounce search showed only the known internal Matt campaign-review thread and no prospect delivery failure, and spam was empty. No outreach email was sent because Batch 5/6 are complete through Follow-Up 2, Batch 7 remains under duplicate-send guard, and no replacement prospect batch is approved.
 - Instagram: August 4 Draft With A Seatbelt was published through native Instagram CDP feed-media input targeting after the normal upload handoff returned `ok` without attaching media. An older duplicate at `https://www.instagram.com/briefrelay/p/DbnvZ3Fkahc/` was deleted; the kept live post is `https://www.instagram.com/briefrelay/p/Dbnw9XAEa_q/`. Profile verified at 16 posts with the BriefRelay avatar still active.
 - Next action: publish August 5 Follow-Up Lot from the prepared queue and approve or revise staged Batch 8 before any new first-touch outreach.
+
+## 2026-08-05 Manual Recovery Note
+
+- Cron status: the 8 AM BriefRelay operator reported `AbortError: agent run aborted`; same-day recovery completed the required Gmail checks, Instagram publish, local board update, memory update, and public board refresh.
+- Gmail/outreach: managed browser Gmail remained logged in as `briefrelayops@gmail.com`. Last-day non-sent search returned no messages, targeted seven-day delivery/bounce search returned no messages, and spam was empty. No outreach email was sent because Batch 5/6 are complete through Follow-Up 2, Batch 7 remains under duplicate-send guard, and Batch 8 is staged but not approved.
+- Instagram: August 5 Follow-Up Lot was published through native Instagram CDP feed-media input targeting after the normal upload handoff returned `ok` without attaching media. Live URL: `https://www.instagram.com/briefrelay/p/DbqW0Yykfik/`. Profile verified at 17 posts with the BriefRelay avatar still active.
+- Next action: publish August 6 Inbox Court: Vendor Promos from the prepared queue and approve or revise staged Batch 8 before any new first-touch outreach.
+## 2026-10-17 Recovery Note
+
+- Gmail/outreach: managed-browser checks found no human prospect replies, no new delivery failures, and no spam. No outreach was sent because no approved eligible send remained; Agape Air stays blocked pending an alternate verified contact. Verified totals: 89 emails, 40 contacted prospects, 3 known bounces.
+- Instagram: `@briefrelay` verified at 19 posts; September 23 Competitor Replied First remains newest at `https://www.instagram.com/briefrelay/p/Ddob_KWEdEQ/`. The October 17 Weekend No-Cooling Queue asset is prepared, but no explicitly approved caption handoff was found, so it was not published.
+- Board: source and Pages repository reconciled to the verified October 17 state.
+
+
+## 2026-10-18 Operator Note
+
+- Gmail/outreach: managed browser verified `briefrelayops@gmail.com`; the 30-day non-sent result set contained 25 Meta/Instagram notices only, targeted delivery/bounce search was empty, and spam was empty. No approved tracker-eligible outreach remained.
+- Instagram: Sunday Approval Shelf published and verified as post 20 at `https://www.instagram.com/briefrelay/p/DeoymnSERoO/` using the native feed-media input.
+- Next action: monitor Batch 8, find an alternate verified Agape Air contact, and publish October 19 Monday Lead Thermometer from the prepared queue.
+
+## 2026-10-19 Operator Note
+
+- Gmail/outreach: managed browser verified `briefrelayops@gmail.com`; the two-day non-sent search contained one Meta account notice only, targeted 30-day delivery/bounce search was empty, and spam was empty. No outreach was eligible: Batch 9 remains monitor-only until its 2026-10-21 follow-up date; older prospects are completed, bounced, or duplicate-send guarded.
+- Instagram: Monday Lead Thermometer published and verified as post 21 at `https://www.instagram.com/briefrelay/p/DerbgXWERTC/` using direct CDP against only the native feed-media input.
+- Next action: monitor Batch 9 for replies/bounces and publish October 20 Quote Request Escape Room from the prepared queue.
