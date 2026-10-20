@@ -242,3 +242,31 @@
 - Gmail/outreach check: managed browser Gmail was logged in as `briefrelayops@gmail.com`. Last-10-day search showed Instagram notices plus the already-known Agape Air delivery block; Agape Air was excluded from follow-up because its first-touch send had a delivery-block warning.
 - Email follow-ups executed: Batch 8 Follow-Up 1 sent to Pineapple Air Heating & Cooling, Western Sky Mechanical, Total Plumbing & Drain, and Storm Plumbing at 09:19 MDT through the logged-in Gmail browser.
 - Verification: Gmail Sent search for `in:sent after:2026/09/23 "The 11:47 PM estimate request"` showed four today results for the follow-up subject.
+
+
+## 2026-10-18
+
+- Planned post: Sunday Approval Shelf using `data/ai-money-venture/marketing/instagram/daily-queue-2026-10-10/2026-10-18-sunday-approval-shelf.png`.
+- Native Instagram upload: opened `Create -> Post` and targeted only the feed-media input accepting images and video; the staged file hash matched the source asset.
+- Caption used: Sunday reset: ready, waiting, not sent. BriefRelay can organize useful leads and draft replies without pretending approval is optional. A calmer shelf for the work that needs owner eyes.
+- Live post: `https://www.instagram.com/briefrelay/p/DeoymnSERoO/`
+- Verification: composer closed after Share; profile refresh showed 20 posts with `https://www.instagram.com/briefrelay/p/DeoymnSERoO/` as the newest post.
+- Gmail/outreach: no human prospect replies, no new delivery failures, and spam empty; no outreach was eligible under tracker and duplicate-send guards.
+
+## 2026-10-19
+
+- Planned post: Monday Lead Thermometer using `data/ai-money-venture/marketing/instagram/daily-queue-2026-10-10/2026-10-19-monday-lead-thermometer.png`.
+- Native Instagram upload: opened `Create -> Post` and used direct CDP `DOM.setFileInputFiles` against only the feed-media input accepting images and video.
+- Caption used: Monday lead temperature check: warm, hot, or already cooling off? BriefRelay helps owners see urgency inside approved lead sources before the day gets loud. Useful context. Safer drafts. Clear approval.
+- Live post: `https://www.instagram.com/briefrelay/p/DerbgXWERTC/`
+- Verification: Instagram confirmed the share; profile refresh showed 21 posts with the Monday Lead Thermometer post newest.
+- Gmail/outreach: no human prospect replies, no new delivery failures, and spam empty; no send because Batch 9 is monitor-only until its 2026-10-21 follow-up date and all older records remain guarded or complete.
+
+## 2026-10-20
+
+- Planned post: Quote Request Escape Room using `data/ai-money-venture/marketing/instagram/daily-queue-2026-10-10/2026-10-20-quote-request-escape-room.png`; source SHA-256 `d306e5f617dba74cf90c54a51e9308ea6ba9d47eda0fa64aaf0c9598f747c2d1`.
+- Native Instagram upload: resumed the open native composer after the prepared PNG had attached, advanced through edit, added the prepared caption, and clicked Share once.
+- Caption used: Today in inbox escape rooms: one quote request behind three promos and a receipt. BriefRelay helps pull the useful lead back into view, then stages a safe reply for approval. Less puzzle box. More next action.
+- Live post: `https://www.instagram.com/briefrelay/p/DeuIsz4EZik/`
+- Verification: profile refresh showed exactly 22 posts with Quote Request Escape Room newest; the permalink opened and displayed the October 20 creative and exact caption.
+- Gmail/outreach: no human prospect replies, no new delivery failures, and spam empty; no send because Batch 9 remains monitor-only until 2026-10-21.

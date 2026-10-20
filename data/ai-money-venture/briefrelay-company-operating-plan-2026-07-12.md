@@ -197,3 +197,9 @@ Kevin expects BriefRelay to move without repeated prompting. Jarvis should revie
 - Gmail/outreach: managed browser verified `briefrelayops@gmail.com`; the two-day non-sent search contained one Meta account notice only, targeted 30-day delivery/bounce search was empty, and spam was empty. No outreach was eligible: Batch 9 remains monitor-only until its 2026-10-21 follow-up date; older prospects are completed, bounced, or duplicate-send guarded.
 - Instagram: Monday Lead Thermometer published and verified as post 21 at `https://www.instagram.com/briefrelay/p/DerbgXWERTC/` using direct CDP against only the native feed-media input.
 - Next action: monitor Batch 9 for replies/bounces and publish October 20 Quote Request Escape Room from the prepared queue.
+
+## 2026-10-20 Recovery Note
+
+- Gmail/outreach: managed browser verified `briefrelayops@gmail.com`; the 30-day inbox scan contained 23 Meta/Instagram notices and no human prospect replies, targeted 30-day delivery/bounce search was empty, and spam was empty. No outreach was eligible because Batch 9 remains monitor-only until 2026-10-21.
+- Instagram: Quote Request Escape Room published once and verified as post 22 at `https://www.instagram.com/briefrelay/p/DeuIsz4EZik/`. The source PNG SHA-256 is `d306e5f617dba74cf90c54a51e9308ea6ba9d47eda0fa64aaf0c9598f747c2d1`; profile refresh showed the new creative and caption as newest, and the permalink opened successfully.
+- Next action: monitor Batch 9 for replies/bounces or an eligible follow-up on October 21 and publish Midweek Brief Check from the prepared queue.
